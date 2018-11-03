@@ -35,6 +35,9 @@ async function reactDelete(MSG, message) {
 	
 //
 
+client.on('error', console.error);
+client.on('promiseRejection', console.error);
+
 client.on('ready', () => {
 	console.log('Successfully loaded.');
 });
@@ -134,7 +137,15 @@ client.on('message', async message => {
 		//
 		case prefix + 'config':
 		case 'esc' + 'config':
-			if (!args[0] || (args[0] !== 'prefix' && args[0] !== 'antiadvert' && args[0] !== 'logs')) {
+			if (!message.member.hasPermission('MANAGE_GUILD')) {
+				embed = new Discord.RichEmbed()
+				.setDescription([
+					`You are missing the permission \`[MANAGE_GUILD]\`.`,
+				])
+				await message.channel.send(embed)
+				return;
+				}
+			if (!args[0] || (args[0] !== 'prefix' && args[0] !== 'antiadvert' && args[0] !== 'logs' && args[0] !== 'reset')) {
 				embed = new Discord.RichEmbed()
 					.setDescription([
 						`*Configuration Values:*`,
@@ -146,7 +157,7 @@ client.on('message', async message => {
 					await message.channel.send(embed)
 					return;
 					}
-			if (!args[1]) {
+			if (!args[1] && args[0] !== 'reset') {
 				embed = new Discord.RichEmbed()
 				.setDescription([
 					`**USAGE:** \`${prefix}config [<value>] [<new value>]\``
@@ -219,7 +230,16 @@ client.on('message', async message => {
 				])
 				await message.channel.send(embed)
 				break;
-			}							
+			}					
+		if(args[0] === 'reset') {
+			client.settings.delete(message.guild.id);
+			await message.channel.send([
+				`:tools: Successfully reset configuration for \`${message.guild.name}\`.`,
+				`:exclamation: Default prefix is now \`!\``,
+				`:speaking_head: Anti Advertisement has been disabled.`,
+				`:wastebasket: Logging has been disabled.`
+			])
+			}
 	}
 });
 //
