@@ -17,22 +17,6 @@ defaultS = {
 };
 //
 
-async function reactDelete(MSG, message) {
-    await MSG.react('🗑');
-    try {
-        react = await MSG.awaitReactions(
-            (reaction, user) => reaction.emoji.name === '🗑' && user.id === message.author.id,
-            { max: 1, time: 90000, errors: ['time'] }
-        );
-        } catch (error) {
-            MSG.clearReactions();
-            return MSG;
-        }
-        react.first().message.delete();
-        message.delete();
-        return MSG;    
-	}
-	
 //
 
 client.on('error', console.error);
@@ -50,6 +34,38 @@ client.on('guildDelete', guild => {
 	console.log(`\n${guild.name}(${guild.id}) removed me from their server.\n`);
 	client.settings.delete(guild.id);
 });
+
+//
+
+client.on('messageDelete', message => {
+	if (message.author.bot) return;
+	client.settings.ensure(message.guild.id, defaultS);
+	//
+	conf = client.settings.ensure(message.guild.id, defaultS);
+	logs = conf.logs;
+	//
+	if (logs) {
+		logs.send('Hey')
+	}
+});
+		
+//
+
+async function reactDelete(MSG, message) {
+    await MSG.react('🗑');
+    try {
+        react = await MSG.awaitReactions(
+            (reaction, user) => reaction.emoji.name === '🗑' && user.id === message.author.id,
+            { max: 1, time: 90000, errors: ['time'] }
+        );
+        } catch (error) {
+            MSG.clearReactions();
+            return MSG;
+        }
+        react.first().message.delete();
+        message.delete();
+        return MSG;    
+	}
 
 //
 
@@ -214,7 +230,7 @@ client.on('message', async message => {
 				if (logChannel.type !== 'text') {
 					embed = new Discord.RichEmbed()
 					.setDescription([
-						`**\`${logChannel.name}\` is not a text channel.**`
+						`\`${logChannel.name}\` is not a text channel.`
 					])
 					await message.channel.send(embed)
 					return;
