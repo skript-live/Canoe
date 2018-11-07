@@ -1,5 +1,4 @@
 module.exports.run = async (client, message, args) => {
-    message.channel.send([
-        `(api ping) \`${client.ping}ms\``
-    ])
+    MSG = await message.channel.send('Fetching Ping...');
+    await MSG.edit(`While my Ping is \`${MSG.createdTimestamp - message.createdTimestamp}ms\`, my ping to the DiscordAPI is \`${Math.round(client.ping)}ms\`.`)
 }
