@@ -1,5 +1,8 @@
 module.exports.run = async (client, message, args) => {
+    const conf = client.settings.ensure(message.guild.id, defaultS);
+    const prefix = conf.prefix;
     message.channel.send([
-        `\`${client.config.prefix}help\`: \`Why hello there\``
+        `\`${prefix}help\`: \`Why hello there\``,
+        `\`${prefix}ping\`: \`View the bot's ping\``
     ])
 }
