@@ -37,7 +37,7 @@ fs.readdir('./commands/', (err, files) => {
 });
 
 setInterval (function () {
-    //PULL NOW
+    //ONCE PER 10 MINS
 }, 600000); 
 
 client.on('ready', () => {
