@@ -10,8 +10,9 @@ module.exports.run = (client, message, args) => {
 		        if (!file.endsWith('.js')) return;
 		            let props = require(`./commands/${file}`);
 		            let commandName = file.split('.')[0];
-		            console.log(`Loaded command '${commandName}'`);
-		            client.commands.set(commandName, props);
+			    client.commands.set(commandName, props);
+		            console.log(`Reloaded command '${commandName}'`);
+			    message.channel.send(`Successfully reloaded \`${commandName}.js\`.`);
 	            });
             });
     return;
@@ -22,5 +23,6 @@ module.exports.run = (client, message, args) => {
     client.commands.delete(commandName);
     const props = require(`./${commandName}.js`);
     client.commands.set(commandName, props);
+    console.log(`Reloaded command '${commandName}'`);
     message.channel.send(`Successfully reloaded \`${commandName}.js\`.`);
   };
