@@ -2,9 +2,8 @@ const Discord = require('discord.js');
 const Enmap = require('enmap');
 const fs = require('fs');
 const client = new Discord.Client();
-const config = require('./config.json');
 client.commands = new Enmap();
-client.config = config;
+client.config = require('./config.json');
 client.settings = new Enmap({
 	name: 'settings',
 	dataDir: './data',
