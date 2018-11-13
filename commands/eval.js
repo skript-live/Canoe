@@ -16,9 +16,7 @@ if (message.author.id == '221659063312842752') {
             evaled = require('util').inspect(evaled);
             message.channel.send(evalClean(evaled), {code:'xl'});
     } catch (err) {
-        embed = new Discord.RichEmbed()
-            .setDescription(`**Error:**\n ${evalClean(err)}`)
-            message.channel.send(embed);
-        }
+        message.channel.send(evalClean(err))
+    }
 }
 };
