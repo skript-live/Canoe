@@ -12,10 +12,10 @@ module.exports.run = (client, message, args) => {
 		            let commandName = file.split('.')[0];
 			    client.commands.set(commandName, props);
 		            console.log(`Reloaded command '${commandName}'`);
-			    message.channel.send(`Successfully reloaded \`${commandName}.js\`.`);
+			    return message.channel.send(`Successfully reloaded \`${commandName}.js\`.`);
 	            });
             });
-    return;
+    }
     if(!client.commands.has(commandName)) {
         return message.reply(`It seems \`${args[0]}.js\` does not exist.`);
     }
