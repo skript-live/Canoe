@@ -12,7 +12,7 @@ client.settings = new Enmap({
 	clonelevel: 'deep'
 });
 defaultS = {
-	prefix: '?',
+	prefix: 'can ',
 };
 
 fs.readdir('./events/', (err, files) => {
@@ -35,6 +35,10 @@ fs.readdir('./commands/', (err, files) => {
 		client.commands.set(commandName, props);
 	});
 });
+
+setInterval (function () {
+    //PULL NOW
+}, 600000); 
 
 client.on('ready', () => {
 	console.log(`Successfully logged in as ${client.user.tag}`);
