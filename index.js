@@ -13,6 +13,9 @@ client.settings = new Enmap({
 });
 defaultS = {
 	prefix: 'can ',
+	logs: 'false',
+	welcome: 'false',
+	leave: 'false',
 };
 
 fs.readdir('./events/', (err, files) => {
