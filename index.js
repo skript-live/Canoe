@@ -16,6 +16,7 @@ defaultS = {
 	logs: 'false',
 	welcome: 'false',
 	leave: 'false',
+	messageDelete: `:wastebasket: {user}'s message deleted in {channel}:\n${message.cleanContent}`
 };
 
 fs.readdir('./events/', (err, files) => {
