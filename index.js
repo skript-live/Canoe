@@ -13,6 +13,8 @@ client.settings = new Enmap({
 });
 defaultS = {
 	prefix: 'can ',
+	modRole: 'false',
+	adminRole: 'false',
 	logs: 'false',
 	welcome: 'false',
 	leave: 'false',
