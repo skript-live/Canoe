@@ -9,6 +9,6 @@ module.exports = (client, member) => {
     welcome = welcome.replace('{userTag}', member.user.tag)
     welcome = welcome.replace('{userId}', member.user.id)
     welcome = welcome.replace('{userDiscriminator}', member.user.discriminator)
-    member.guild.channels.find('name', client.settings.get(member.guild.id, 'logs')).send(welcome).catch(console.error);
+    member.guild.channels.find('name', client.settings.get(member.guild.id, 'logs')).send(welcome).catch();
 });
     
