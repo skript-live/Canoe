@@ -15,7 +15,6 @@ defaultS = {
 	prefix: 'can ',
 	noAccess: 'You don\'t have access to that.'
 	modRole: 'false',
-	adminRole: 'false',
 	logs: 'false',
 	welcome: 'false',
 	leave: 'false',
