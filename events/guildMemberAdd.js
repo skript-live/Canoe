@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-module.exports = (client, message, member) => {
+module.exports = (client, member) => {
     const conf = client.settings.ensure(member.guild.id, defaultS);
     let welcome = client.settings.get(member.guild.id, 'welcome');
     welcome = welcome.replace('{user}', member.user.tag)
