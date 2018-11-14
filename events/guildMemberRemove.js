@@ -11,4 +11,3 @@ module.exports = (client, member) => {
     leave = leave.replace('{userDiscriminator}', member.user.discriminator)
     member.guild.channels.find('name', client.settings.get(member.guild.id, 'logs')).send(leave).catch(console.error);
 });
-    
