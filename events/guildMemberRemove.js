@@ -9,5 +9,8 @@ module.exports = (client, member) => {
 	.replace('{userTag}', member.user.tag)
 	.replace('{userId}', member.user.id)
 	.replace('{userDiscriminator}', member.user.discriminator)
-	member.guild.channels.find('name', client.settings.get(member.guild.id, 'logs')).send(leave).catch(console.error);
+	log = member.guild.channels.find(c => c.name === client.settings.get(member.guild.id, 'logs'))
+	if (log) {
+		log.send(leave).catch();
+	}
 };
