@@ -1,16 +1,5 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
-
 module.exports = (client, message) => {
     if (message.author.bot) return;
-    const cd = new Set();
-    if (cd.has(message.author.id)) return;
-    } else {
-        cd.add(msg.author.id);
-        setTimeout(() => {
-            cd.delete(message.author.id);
-        }, 2500);
-    }
     const conf = client.settings.ensure(message.guild.id, defaultS);
     const prefix = conf.prefix;
     if (message.content.indexOf(prefix) !== 0) return;
