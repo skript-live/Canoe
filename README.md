@@ -1,5 +1,5 @@
 # Canoe
 ___
 - Discord bot by MrScopes#5546
-- **VISIT OUR DISCORD SERVER:** {link}
+- **JOIN MY SUPPORT SERVER:** https://discord.gg/BpCXJ8V
 - **OUR FORUMS:** https://canoe.forums.gg/
