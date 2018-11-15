@@ -6,19 +6,19 @@ client.commands = new Enmap();
 client.config = require('./config.json');
 client.settings = new Enmap({
 	name: 'settings',
-	dataDir: './data',
+	dataDir: './guilds',
 	autoFetch: true,
 	fetchAll: false,
 	clonelevel: 'deep'
 });
 defaultS = {
 	prefix: 'can ',
-	noAccess: 'You don\'t have access to that.'
+	noAccess: 'You don\'t have access to that.',
 	modRole: 'false',
 	logs: 'false',
 	welcome: 'false',
 	leave: 'false',
-	messageDelete: `:wastebasket: {user}'s message deleted in {channel}:\n${message.cleanContent}`
+	messageDelete: `:wastebasket: {user}'s message deleted in {channel}:\n{message}`
 };
 
 fs.readdir('./events/', (err, files) => {
@@ -26,7 +26,6 @@ fs.readdir('./events/', (err, files) => {
 	files.forEach(file => {
 		const event = require(`./events/${file}`);
 		let eventName = file.split('.')[0];
-		console.log(`Loaded event '${eventName}'`)
 		client.on(eventName, event.bind(null, client));
 	});
 });
@@ -37,7 +36,6 @@ fs.readdir('./commands/', (err, files) => {
 		if (!file.endsWith('.js')) return;
 		let props = require(`./commands/${file}`);
 		let commandName = file.split('.')[0];
-		console.log(`Loaded command '${commandName}'`);
 		client.commands.set(commandName, props);
 	});
 });
@@ -53,4 +51,4 @@ client.on('ready', () => {
 client.on('error', console.error);
 client.on('promiseRejection', console.error);
 
-client.login(config.token);
+client.login(client.config.token);
