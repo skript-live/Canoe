@@ -13,13 +13,10 @@ client.settings = new Enmap({
 });
 defaultS = {
 	prefix: 'can ',
-	noAccess: 'You don\'t have access to that.',
 	modRole: 'false',
-	hush: 'false',
 	logs: 'false',
 	welcome: 'false',
 	leave: 'false',
-	messageDelete: `:wastebasket: {user}'s message deleted in {channel}:\n{message}`
 };
 
 fs.readdir('./events/', (err, files) => {
